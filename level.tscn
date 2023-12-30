@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://ba3pk5tn07ata"]
+
+[ext_resource type="Texture2D" uid="uid://iwsanensblec" path="res://assets/prototype-textures/Vector/texture_06.svg" id="1_wp2he"]
+[ext_resource type="PackedScene" uid="uid://bxgiex2boc23g" path="res://player.tscn" id="2_yslca"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kspoc"]
+albedo_texture = ExtResource("1_wp2he")
+uv1_scale = Vector3(96, 64, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6pnug"]
+material = SubResource("StandardMaterial3D_kspoc")
+size = Vector3(32, 32, 32)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mavbd"]
+
+[sub_resource type="Sky" id="Sky_o2pfj"]
+sky_material = SubResource("ProceduralSkyMaterial_mavbd")
+
+[sub_resource type="Environment" id="Environment_rhxq6"]
+background_mode = 2
+sky = SubResource("Sky_o2pfj")
+
+[node name="Level" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_6pnug")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rhxq6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.548498, 0, 0.836152, 0, 1, 0, -0.836152, 0, -0.548498, 32, 64, -320)
+
+[node name="Player" parent="." instance=ExtResource("2_yslca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 32, 32)
