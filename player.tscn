@@ -2,11 +2,60 @@
 
 [ext_resource type="Script" path="res://player.gd" id="1_g3lm8"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cam")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cam", "coords", "fps")]
 script = ExtResource("1_g3lm8")
 acceleration = 25.0
 walkSpeed = 5.0
 mouseSpeed = 300.0
 cam = NodePath("Camera3D")
+coords = NodePath("UserInterface/VBoxContainer/CoordinateLabel")
+fps = NodePath("UserInterface/VBoxContainer/FPSLabel")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UserInterface"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FPSLabel" type="Label" parent="UserInterface/VBoxContainer"]
+layout_mode = 2
+
+[node name="CoordinateLabel" type="Label" parent="UserInterface/VBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -8.0
+offset_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2

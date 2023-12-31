@@ -5,6 +5,8 @@ extends CharacterBody3D
 @export var mouseSpeed : float  # 300
 
 @export var cam : Camera3D
+@export var coords : Label
+@export var fps : Label
 
 # var velocity = Vector3.ZERO
 var lookAngles = Vector2.ZERO
@@ -34,11 +36,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Sprint") and direction != Vector3.ZERO:
 		playerSpeed = sprintSpeed
 		var speedTween = get_tree().create_tween()
-		speedTween.tween_property(cam, "fov", 90, .5)
-	if Input.is_action_just_released("Sprint") and direction != Vector3.ZERO:
+		speedTween.tween_property(cam, "fov", 90, .25)
+	if Input.is_action_just_released("Sprint"):
 		playerSpeed = walkSpeed
 		var speedTween = get_tree().create_tween()
-		speedTween.tween_property(cam, "fov", 75, .5)
+		speedTween.tween_property(cam, "fov", 75, .25)
 		
 	
 	move_and_slide()
@@ -53,3 +55,7 @@ func updateDirection():
 	var vertical = Input.get_axis("Up", "Down") * -1
 
 	return (transform.basis * Vector3(horizontal.x, vertical, horizontal.y)).normalized()
+
+func _process(delta):
+	coords.text = str(global_position)
+	fps.text = str(Engine.get_frames_per_second())
