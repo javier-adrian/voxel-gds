@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxgiex2boc23g"]
+[gd_scene load_steps=3 format=3 uid="uid://bxgiex2boc23g"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_g3lm8"]
+[ext_resource type="FontFile" uid="uid://djycnlo5n88st" path="res://assets/Minecraftia-Regular.ttf" id="2_8ggpf"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cam", "coords", "fps")]
 script = ExtResource("1_g3lm8")
@@ -28,9 +29,11 @@ offset_bottom = 40.0
 
 [node name="FPSLabel" type="Label" parent="UserInterface/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8ggpf")
 
 [node name="CoordinateLabel" type="Label" parent="UserInterface/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8ggpf")
 
 [node name="ColorRect2" type="ColorRect" parent="UserInterface"]
 layout_mode = 1
