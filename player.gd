@@ -57,5 +57,5 @@ func updateDirection():
 	return (transform.basis * Vector3(horizontal.x, vertical, horizontal.y)).normalized()
 
 func _process(delta):
-	coords.text = str(global_position)
-	fps.text = str(Engine.get_frames_per_second())
+	coords.text = "XYZ: " + ("%.2f" % global_position.y) + " / " + ("%.2f" % global_position.y) + " / " + ("%.2f" % global_position.z)
+	fps.text = str(Engine.get_frames_per_second()) + " fps"
