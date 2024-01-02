@@ -6,7 +6,7 @@ A simple voxel engine written in GDScript. Heavily inspired by [xen-42](https://
 
 ## Current State
 - Basic texture, terrain, and chunk generation
-- A free fly camera as player (similar to Minecraft's creative mode)
+- A free fly camera as player (similar to Minecraft's spectator mode)
 - Basic debug info
 
 ## Planned Features
