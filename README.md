@@ -1,6 +1,6 @@
 # Voxel-GDS(cript)
 
-A simple voxel engine written in GDScript. Heavily inspired by [xen-42](https://youtu.be/TM3r2V4980k?si=ga7BAbaJkuvrWyqN).
+A simple voxel engine written in GDScript. Heavily inspired by [xen-42's iteration of a voxel engine](https://youtu.be/TM3r2V4980k?si=ga7BAbaJkuvrWyqN).
 
 ![Voxel-GDS Preview](/preview.png)
 
