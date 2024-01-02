@@ -1,12 +1,12 @@
 extends CharacterBody3D
 
-@export var acceleration : float # 25
-@export var walkSpeed : float   # 5
-@export var mouseSpeed : float  # 300
+@export var acceleration: float  # 25
+@export var walkSpeed: float  # 5
+@export var mouseSpeed: float  # 300
 
-@export var cam : Camera3D
-@export var coords : Label
-@export var fps : Label
+@export var cam: Camera3D
+@export var coords: Label
+@export var fps: Label
 
 # var velocity = Vector3.ZERO
 var lookAngles = Vector2.ZERO
@@ -32,7 +32,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, walkSpeed)
 		velocity.y = move_toward(velocity.y, 0, walkSpeed)
 		velocity.z = move_toward(velocity.z, 0, walkSpeed)
-	
+
 	if Input.is_action_pressed("Sprint") and direction != Vector3.ZERO:
 		playerSpeed = sprintSpeed
 		var speedTween = get_tree().create_tween()
@@ -41,9 +41,9 @@ func _physics_process(delta):
 		playerSpeed = walkSpeed
 		var speedTween = get_tree().create_tween()
 		speedTween.tween_property(cam, "fov", 75, .25)
-		
-	
+
 	move_and_slide()
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -56,6 +56,14 @@ func updateDirection():
 
 	return (transform.basis * Vector3(horizontal.x, vertical, horizontal.y)).normalized()
 
+
 func _process(delta):
-	coords.text = "XYZ: " + ("%.2f" % global_position.y) + " / " + ("%.2f" % global_position.y) + " / " + ("%.2f" % global_position.z)
+	coords.text = (
+		"XYZ: "
+		+ ("%.2f" % global_position.y)
+		+ " / "
+		+ ("%.2f" % global_position.y)
+		+ " / "
+		+ ("%.2f" % global_position.z)
+	)
 	fps.text = str(Engine.get_frames_per_second()) + " fps"
