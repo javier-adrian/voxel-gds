@@ -43,8 +43,6 @@ func _ready():
 			if imageIndex >= len(blockTextures):
 				continue
 
-			print(blockTextures[imageIndex])
-
 			var currentImage = blockTextures[imageIndex].get_image()
 			currentImage.convert(Image.FORMAT_RGBA8)
 
