@@ -89,9 +89,9 @@ func createBlockMesh(blockPosition: Vector3i):
 		return
 
 	if checkTransparent(blockPosition + Vector3i.UP):
-		createFaceMesh(top, blockPosition, block.texture)
+		createFaceMesh(top, blockPosition, block.topTexture if block.topTexture else block.texture)
 	if checkTransparent(blockPosition + Vector3i.DOWN):
-		createFaceMesh(bottom, blockPosition, block.texture)
+		createFaceMesh(bottom, blockPosition, block.bottomTexture if block.bottomTexture else block.texture)
 	if checkTransparent(blockPosition + Vector3i.LEFT):
 		createFaceMesh(left, blockPosition, block.texture)
 	if checkTransparent(blockPosition + Vector3i.RIGHT):

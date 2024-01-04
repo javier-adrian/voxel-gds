@@ -8,18 +8,20 @@
 [ext_resource type="Texture2D" uid="uid://cp0obdf8fkr58" path="res://assets/stone.png" id="4_3yf17"]
 [ext_resource type="Texture2D" uid="uid://d1ud8llr7qpgw" path="res://assets/dirt.png" id="5_c2j3k"]
 
-[sub_resource type="Resource" id="Resource_05gtw"]
+[sub_resource type="Resource" id="Resource_tl70m"]
 script = ExtResource("2_upw8c")
 
-[sub_resource type="Resource" id="Resource_8mdmt"]
+[sub_resource type="Resource" id="Resource_s0g17"]
 script = ExtResource("2_upw8c")
-texture = ExtResource("3_gf4ov")
+texture = ExtResource("5_c2j3k")
+topTexture = ExtResource("3_gf4ov")
+bottomTexture = ExtResource("5_c2j3k")
 
-[sub_resource type="Resource" id="Resource_f1cu5"]
+[sub_resource type="Resource" id="Resource_ile1q"]
 script = ExtResource("2_upw8c")
 texture = ExtResource("4_3yf17")
 
-[sub_resource type="Resource" id="Resource_44dqs"]
+[sub_resource type="Resource" id="Resource_ef7xr"]
 script = ExtResource("2_upw8c")
 texture = ExtResource("5_c2j3k")
 
@@ -36,10 +38,10 @@ sky = SubResource("Sky_o2pfj")
 
 [node name="BlockManager" type="Node" parent="."]
 script = ExtResource("1_fc041")
-air = SubResource("Resource_05gtw")
-grass = SubResource("Resource_8mdmt")
-stone = SubResource("Resource_f1cu5")
-dirt = SubResource("Resource_44dqs")
+air = SubResource("Resource_tl70m")
+grass = SubResource("Resource_s0g17")
+stone = SubResource("Resource_ile1q")
+dirt = SubResource("Resource_ef7xr")
 
 [node name="Chunk" parent="." instance=ExtResource("3_xwiq5")]
 

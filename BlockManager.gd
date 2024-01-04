@@ -1,3 +1,4 @@
+@tool
 extends Node
 class_name BlockManager
 
@@ -18,14 +19,21 @@ var chunkMaterial = StandardMaterial3D.new()
 
 
 func _ready():
+	## i think this is such shit code but istg im so done
 	var blockTextures = [air, stone, dirt, grass]
+	var textureTypes = [air, stone, dirt, grass]
+	var blocks: int = len(blockTextures)
 
-	for block in len(blockTextures):
-		blockTextures[block] = blockTextures[block].texture
+	for block in blocks:
+		blockTextures.append_array(blockTextures[block].textures())
+
+	for block in blocks:
+		blockTextures.erase(textureTypes[block])
 
 	blockTextures = blockTextures.filter(
 		func(texture): return texture != null && blockTextures.count(texture)
 	)
+	print(blockTextures)
 
 	for i in len(blockTextures):
 		atlasLUT[blockTextures[i]] = Vector2i(i % gridWidth, floori(i / gridWidth))
