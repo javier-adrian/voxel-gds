@@ -1,4 +1,3 @@
-@tool
 extends Node
 class_name BlockManager
 
@@ -19,7 +18,6 @@ var chunkMaterial = StandardMaterial3D.new()
 
 
 func _ready():
-	## i think this is such shit code but istg im so done
 	var blockTextures = [air, stone, dirt, grass]
 	var textureTypes = [air, stone, dirt, grass]
 	var blocks: int = len(blockTextures)
