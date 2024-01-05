@@ -1,18 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxgiex2boc23g"]
+[gd_scene load_steps=6 format=3 uid="uid://bxgiex2boc23g"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_g3lm8"]
 [ext_resource type="FontFile" uid="uid://djycnlo5n88st" path="res://assets/Minecraftia-Regular.ttf" id="2_8ggpf"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cam", "coords", "fps")]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7whlb"]
+height = 1.95
+radius = 0.45
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8j2cv"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cry2v"]
+material = SubResource("StandardMaterial3D_8j2cv")
+size = Vector3(1.01, 1.01, 1.01)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "cam", "RayCast", "highlighter", "coords", "fps", "gamemode")]
 script = ExtResource("1_g3lm8")
-acceleration = 25.0
+jump = 8.5
 walkSpeed = 5.0
-mouseSpeed = 300.0
-cam = NodePath("Camera3D")
+sensitivity = 0.3
+head = NodePath("head")
+cam = NodePath("head/Camera3D")
+RayCast = NodePath("head/Camera3D/RayCast3D")
+highlighter = NodePath("highlighter")
 coords = NodePath("UserInterface/MarginContainer/VBoxContainer/CoordinateLabel")
 fps = NodePath("UserInterface/MarginContainer/VBoxContainer/FPSLabel")
-
-[node name="Camera3D" type="Camera3D" parent="."]
+gamemode = NodePath("UserInterface/MarginContainer/VBoxContainer/GameModeLabel")
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -69,3 +83,22 @@ theme_override_fonts/font = ExtResource("2_8ggpf")
 [node name="CoordinateLabel" type="Label" parent="UserInterface/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_8ggpf")
+
+[node name="GameModeLabel" type="Label" parent="UserInterface/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8ggpf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_7whlb")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.607421, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="head/Camera3D"]
+visible = false
+target_position = Vector3(0, 0, -5)
+
+[node name="highlighter" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_cry2v")

@@ -1,18 +1,26 @@
+
 extends CharacterBody3D
 
-@export var acceleration: float  # 25
+@export var jump: float  # 300
 @export var walkSpeed: float  # 5
-@export var mouseSpeed: float  # 300
+@export var sensitivity: float  # 300
 
+@export var head: Node3D
 @export var cam: Camera3D
+@export var RayCast: RayCast3D
+@export var highlighter: MeshInstance3D
 @export var coords: Label
 @export var fps: Label
+@export var gamemode: Label
+@export var survival: bool
 
-# var velocity = Vector3.ZERO
 var lookAngles = Vector2.ZERO
 
 var sprintSpeed: float
 var playerSpeed: float
+var camXRotation: float = 0
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+@onready var blockManager = get_node(^"/root/Level/BlockManager")
 
 
 func _ready():
@@ -22,16 +30,24 @@ func _ready():
 
 
 func _physics_process(delta):
-	lookAngles.y = clamp(lookAngles.y, PI / -2, PI / 2)
-	rotation = Vector3(lookAngles.y, lookAngles.x, 0)
-	var direction = updateDirection()
+	if !is_on_floor() && survival:
+		velocity.y -= gravity * delta
+	if Input.is_action_just_pressed("Up") && is_on_floor() && survival:
+		velocity.y = jump
 
-	if direction:
-		velocity = direction * playerSpeed
-	else:
-		velocity.x = move_toward(velocity.x, 0, walkSpeed)
-		velocity.y = move_toward(velocity.y, 0, walkSpeed)
-		velocity.z = move_toward(velocity.z, 0, walkSpeed)
+	var horizontal = Input.get_vector("Left", "Right", "Backward", "Forward").normalized()
+
+	var direction = Vector3.ZERO
+
+	direction += horizontal.x * head.global_basis.x
+	direction += horizontal.y * -head.global_basis.z
+
+	if !survival:
+		var vertical = Input.get_axis("Up", "Down") * -1
+		velocity.y = vertical * gravity
+
+	velocity.x = direction.x * playerSpeed
+	velocity.z = direction.z * playerSpeed
 
 	if Input.is_action_pressed("Sprint") and direction != Vector3.ZERO:
 		playerSpeed = sprintSpeed
@@ -44,20 +60,41 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-
 func _input(event):
+	if Input.is_physical_key_pressed(KEY_F4):
+		survival = false if survival else true
+	if Input.is_physical_key_pressed(KEY_F1):
+		coords.visible = false if coords.visible else true
+		fps.visible = false if fps.visible else true
+		gamemode.visible = false if gamemode.visible else true
 	if event is InputEventMouseMotion:
-		lookAngles -= event.relative / mouseSpeed
+		var mouseMotion = event as InputEventMouseMotion
+		lookAngles.x = mouseMotion.relative.y * sensitivity
+		lookAngles.y = -mouseMotion.relative.x * sensitivity
 
-
-func updateDirection():
-	var horizontal = Input.get_vector("Left", "Right", "Forward", "Backward")
-	var vertical = Input.get_axis("Up", "Down") * -1
-
-	return (transform.basis * Vector3(horizontal.x, vertical, horizontal.y)).normalized()
-
+		head.rotate_y(deg_to_rad(lookAngles.y))
+		if camXRotation + lookAngles.x > -90 && camXRotation + lookAngles.x < 90:
+			cam.rotate_x(deg_to_rad(-lookAngles.x))
+			camXRotation += lookAngles.x
 
 func _process(delta):
+	highlighter.visible = RayCast.is_colliding()
+
+	if RayCast.is_colliding() && RayCast.get_collider() is Chunk:
+		var chunk = RayCast.get_collider()
+		highlighter.visible = true
+
+		var blockPosition = RayCast.get_collision_point() - 0.5 * RayCast.get_collision_normal()
+		var intBlockPosition = Vector3i(floori(blockPosition.x), floori(blockPosition.y), floori(blockPosition.z))
+		highlighter.global_position = Vector3(intBlockPosition) + Vector3(0.5, 0.5, 0.5)
+
+		if Input.is_action_just_pressed("Break"):
+			chunk.setBlock(Vector3i(intBlockPosition - Vector3i(chunk.global_position)), blockManager.air)
+		if Input.is_action_just_pressed("Place"):
+			chunk.setBlock(Vector3i(intBlockPosition + Vector3i(RayCast.get_collision_normal())), blockManager.stone)
+	else:
+		highlighter.visible = false
+
 	coords.text = (
 		"XYZ: "
 		+ ("%.2f" % global_position.y)
@@ -67,3 +104,4 @@ func _process(delta):
 		+ ("%.2f" % global_position.z)
 	)
 	fps.text = str(Engine.get_frames_per_second()) + " fps"
+	gamemode.text = "survival" if survival else "creative"

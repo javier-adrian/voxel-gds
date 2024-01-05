@@ -53,4 +53,6 @@ environment = SubResource("Environment_rhxq6")
 transform = Transform3D(-0.548498, 0, 0.836152, 0, 1, 0, -0.836152, 0, -0.548498, 32, 64, -320)
 
 [node name="Player" parent="." instance=ExtResource("2_yslca")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 32, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35, 0)
+acceleration = 0.0
+survival = true

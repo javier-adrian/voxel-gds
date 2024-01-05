@@ -1,3 +1,4 @@
+class_name Chunk
 extends StaticBody3D
 
 @export var collider: CollisionShape3D
@@ -139,3 +140,7 @@ func checkTransparent(blockPosition: Vector3i):
 		return true
 
 	return blocks[blockPosition] == blockManager.air
+
+func setBlock(blockPosition: Vector3i, block: Block):
+	blocks[blockPosition] = block
+	update()
