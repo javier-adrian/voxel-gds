@@ -50,7 +50,8 @@ dirt = SubResource("Resource_j7exu")
 environment = SubResource("Environment_rhxq6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.548498, 0, 0.836152, 0, 1, 0, -0.836152, 0, -0.548498, 32, 64, -320)
+transform = Transform3D(-0.548498, 0, 0.836152, 0, 1, 0, -0.836152, 0, -0.548498, 32, 64, -32)
+shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_yslca")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35, 0)
