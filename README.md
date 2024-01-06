@@ -8,9 +8,9 @@ A simple voxel engine written in GDScript. Heavily inspired by [xen-42's iterati
 - Basic texture, terrain, and chunk generation
 - A free fly camera as player (similar to Minecraft's spectator mode)
 - Basic debug info
+- Block placing and destroying
 
 ## Planned Features
-- Block placing and destroying
 - Chunk saving
 - Wholly optimized chunk generation (frustrum culling, greedy meshing, etc.)
 - Inventory system
