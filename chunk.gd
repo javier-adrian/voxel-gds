@@ -127,8 +127,11 @@ func createFaceMesh(face: Array[int], blockPosition: Vector3i, texture: Texture2
 	var topLeftTriangle = [a, b, c]
 	var bottomRightTriangle = [a, c, d]
 
-	surfaceTool.add_triangle_fan(topLeftTriangle, uvTopLeftTriangle)
-	surfaceTool.add_triangle_fan(bottomRightTriangle, uvBottomRightTriangle)
+	var normal = (Vector3(c - a)).cross(Vector3(b - a)).normalized()
+	var normals: Array[Vector3] = [normal, normal, normal]
+
+	surfaceTool.add_triangle_fan(topLeftTriangle, uvTopLeftTriangle, normals)
+	surfaceTool.add_triangle_fan(bottomRightTriangle, uvBottomRightTriangle, normals)
 
 
 func checkTransparent(blockPosition: Vector3i):
