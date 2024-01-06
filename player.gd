@@ -97,7 +97,7 @@ func _process(delta):
 
 	coords.text = (
 		"XYZ: "
-		+ ("%.2f" % global_position.y)
+		+ ("%.2f" % global_position.x)
 		+ " / "
 		+ ("%.2f" % global_position.y)
 		+ " / "
