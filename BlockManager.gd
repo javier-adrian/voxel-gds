@@ -11,7 +11,7 @@ var atlasLUT: Dictionary
 var gridWidth: int = 4
 var gridHeight: int
 
-var blockTextureSize = Vector2i(1024, 1024)
+var blockTextureSize = Vector2i(8, 8)
 var textureAtlasSize: Vector2
 
 var chunkMaterial = StandardMaterial3D.new()

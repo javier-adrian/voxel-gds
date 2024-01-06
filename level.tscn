@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://BlockManager.gd" id="1_fc041"]
 [ext_resource type="Script" path="res://block.gd" id="2_upw8c"]
 [ext_resource type="PackedScene" uid="uid://bxgiex2boc23g" path="res://player.tscn" id="2_yslca"]
-[ext_resource type="Texture2D" uid="uid://oesgg8ldmtn4" path="res://assets/grass.png" id="3_gf4ov"]
 [ext_resource type="PackedScene" uid="uid://48eek6b47br5" path="res://chunk.tscn" id="3_xwiq5"]
 [ext_resource type="Texture2D" uid="uid://cp0obdf8fkr58" path="res://assets/stone.png" id="4_3yf17"]
-[ext_resource type="Texture2D" uid="uid://c6vy51nqfiwr8" path="res://assets/grass_top.png" id="5_31op4"]
+[ext_resource type="Texture2D" uid="uid://du8wrmir36ly7" path="res://assets/grass_block_side.png" id="4_ryrpq"]
+[ext_resource type="Texture2D" uid="uid://bsl53mcl7kq73" path="res://assets/grass_block_top.png" id="5_8wlq1"]
 [ext_resource type="Texture2D" uid="uid://d1ud8llr7qpgw" path="res://assets/dirt.png" id="5_c2j3k"]
 
 [sub_resource type="Resource" id="Resource_d70is"]
@@ -14,8 +14,8 @@ script = ExtResource("2_upw8c")
 
 [sub_resource type="Resource" id="Resource_272vi"]
 script = ExtResource("2_upw8c")
-texture = ExtResource("3_gf4ov")
-topTexture = ExtResource("5_31op4")
+texture = ExtResource("4_ryrpq")
+topTexture = ExtResource("5_8wlq1")
 bottomTexture = ExtResource("5_c2j3k")
 
 [sub_resource type="Resource" id="Resource_j2tqp"]

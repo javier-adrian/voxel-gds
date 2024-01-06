@@ -23,3 +23,6 @@ A simple voxel engine written in GDScript. Heavily inspired by [xen-42's iterati
 - Multiplayer
 - Cave generation
 - Entities (neutral, hostile, and friendly)
+
+## Credits
+- [Faithful Resource Pack](https://faithfulpack.net)
