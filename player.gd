@@ -91,7 +91,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("Break"):
 			chunk.setBlock(Vector3i(intBlockPosition - Vector3i(chunk.global_position)), blockManager.air)
 		if Input.is_action_just_pressed("Place"):
-			chunk.setBlock(Vector3i(intBlockPosition + Vector3i(RayCast.get_collision_normal())), blockManager.stone)
+			chunk.setBlock(Vector3i(intBlockPosition + Vector3i(RayCast.get_collision_normal()) - Vector3i(chunk.global_position)), blockManager.stone)
 	else:
 		highlighter.visible = false
 
