@@ -153,6 +153,16 @@ func setBlock(blockPosition: Vector3i, block: Block):
 	blocks[blockPosition] = block
 	update()
 
+func getBlock(blockPosition: Vector3i) -> String:
+	match blocks[blockPosition]:
+		blockManager.dirt:
+			return "dirt"
+		blockManager.stone:
+			return "stone"
+		blockManager.grass:
+			return "grass"
+	return "none"
+
 func setChunkPosition(position: Vector2i):
 	chunkManager.updateChunkPosition(self, position, chunkPosition)
 

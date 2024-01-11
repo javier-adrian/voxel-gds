@@ -12,9 +12,12 @@ extends CharacterBody3D
 @export var coords: Label
 @export var fps: Label
 @export var gamemode: Label
+@export var targeted: Label
 @export var survival: bool
 
 var lookAngles = Vector2.ZERO
+
+var targetedBlock: String
 
 var sprintSpeed: float
 var playerSpeed: float
@@ -85,8 +88,13 @@ func _process(delta):
 		var chunk = RayCast.get_collider()
 		highlighter.visible = true
 
+
 		var blockPosition = RayCast.get_collision_point() - 0.5 * RayCast.get_collision_normal()
 		var intBlockPosition = Vector3i(floori(blockPosition.x), floori(blockPosition.y), floori(blockPosition.z))
+
+		targetedBlock = chunk.getBlock(Vector3i(intBlockPosition - Vector3i(chunk.global_position)))
+		targeted.text = "Targeted block: " + targetedBlock + " (" +str(intBlockPosition.x) + " / " + str(intBlockPosition.y) + " / " + str(intBlockPosition.z) + ")"
+ 
 		highlighter.global_position = Vector3(intBlockPosition) + Vector3(0.5, 0.5, 0.5)
 
 		if Input.is_action_just_pressed("Break"):
@@ -95,6 +103,7 @@ func _process(delta):
 			chunkManager.setBlock(Vector3i(intBlockPosition + Vector3i(RayCast.get_collision_normal())), blockManager.stone)
 	else:
 		highlighter.visible = false
+		targeted.text = "Targeted block: none"
 
 	coords.text = (
 		"XYZ: "
