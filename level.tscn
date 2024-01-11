@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ba3pk5tn07ata"]
+[gd_scene load_steps=17 format=3 uid="uid://ba3pk5tn07ata"]
 
 [ext_resource type="Script" path="res://BlockManager.gd" id="1_fc041"]
 [ext_resource type="Script" path="res://block.gd" id="2_upw8c"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://du8wrmir36ly7" path="res://assets/grass_block_side.png" id="4_ryrpq"]
 [ext_resource type="Texture2D" uid="uid://bsl53mcl7kq73" path="res://assets/grass_block_top.png" id="5_8wlq1"]
 [ext_resource type="Texture2D" uid="uid://d1ud8llr7qpgw" path="res://assets/dirt.png" id="5_c2j3k"]
+[ext_resource type="Script" path="res://ChunkManager.gd" id="7_f57qt"]
 
 [sub_resource type="Resource" id="Resource_d70is"]
 script = ExtResource("2_upw8c")
@@ -43,6 +44,9 @@ air = SubResource("Resource_d70is")
 grass = SubResource("Resource_272vi")
 stone = SubResource("Resource_j2tqp")
 dirt = SubResource("Resource_j7exu")
+
+[node name="ChunkManager" type="Node" parent="."]
+script = ExtResource("7_f57qt")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rhxq6")

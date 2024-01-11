@@ -21,6 +21,7 @@ var playerSpeed: float
 var camXRotation: float = 0
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var blockManager = get_node(^"/root/Level/BlockManager")
+@onready var chunkManager = get_node(^"/root/Level/ChunkManager")
 
 
 func _ready():
@@ -91,7 +92,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("Break"):
 			chunk.setBlock(Vector3i(intBlockPosition - Vector3i(chunk.global_position)), blockManager.air)
 		if Input.is_action_just_pressed("Place"):
-			chunk.setBlock(Vector3i(intBlockPosition + Vector3i(RayCast.get_collision_normal()) - Vector3i(chunk.global_position)), blockManager.stone)
+			chunkManager.setBlock(Vector3i(intBlockPosition + Vector3i(RayCast.get_collision_normal())), blockManager.stone)
 	else:
 		highlighter.visible = false
 

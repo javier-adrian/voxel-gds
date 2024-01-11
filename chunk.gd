@@ -6,6 +6,7 @@ extends StaticBody3D
 # @export var noise: FastNoiseLite
 
 @onready var blockManager = get_node(^"/root/Level/BlockManager")
+@onready var chunkManager = get_node(^"/root/Level/ChunkManager")
 
 var dimensions = Vector3i(32, 32, 32)
 
@@ -31,8 +32,12 @@ var surfaceTool = SurfaceTool.new()
 
 var blocks: Dictionary
 
+var chunkPosition: Vector2i
+
 
 func _ready():
+	setChunkPosition(Vector2i(floori(global_position.x / dimensions.x), floori(global_position.z / dimensions.z)))
+
 	generate()
 	update()
 
@@ -146,4 +151,13 @@ func checkTransparent(blockPosition: Vector3i):
 
 func setBlock(blockPosition: Vector3i, block: Block):
 	blocks[blockPosition] = block
+	update()
+
+func setChunkPosition(position: Vector2i):
+	chunkManager.updateChunkPosition(self, position, chunkPosition)
+
+	chunkPosition = position
+	global_position = Vector3(chunkPosition.x * dimensions.x, 0, chunkPosition.y * dimensions.z)
+
+	generate()
 	update()
