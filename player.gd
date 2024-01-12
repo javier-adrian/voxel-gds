@@ -13,11 +13,16 @@ extends CharacterBody3D
 @export var fps: Label
 @export var gamemode: Label
 @export var targeted: Label
+@export var facing: Label
 @export var survival: bool
 
 var lookAngles = Vector2.ZERO
 
 var targetedBlock: String
+var looking_at: Vector2
+var directions := [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
+var distances : Array[float] = [0, 0, 0, 0]
+var directions_string := ["east", "west", "south", "north"]
 
 var sprintSpeed: float
 var playerSpeed: float
@@ -80,6 +85,13 @@ func _input(event):
 		if camXRotation + lookAngles.x > -90 && camXRotation + lookAngles.x < 90:
 			cam.rotate_x(deg_to_rad(-lookAngles.x))
 			camXRotation += lookAngles.x
+	
+	looking_at = Vector2.RIGHT.rotated(round(head.rotation.y / TAU * 8) * TAU / 8).snapped(Vector2.ONE)
+
+	for i in len(directions):
+		distances[i] = directions[i].distance_to(looking_at)
+	
+	facing.text = "Facing: %s" % str(directions_string[distances.find(distances.min())])
 
 func _process(delta):
 	highlighter.visible = RayCast.is_colliding()

@@ -15,7 +15,7 @@ albedo_color = Color(1, 1, 1, 0.4)
 material = SubResource("StandardMaterial3D_8j2cv")
 size = Vector3(1.01, 1.01, 1.01)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "cam", "RayCast", "highlighter", "coords", "fps", "gamemode", "targeted")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "cam", "RayCast", "highlighter", "coords", "fps", "gamemode", "targeted", "facing")]
 script = ExtResource("1_g3lm8")
 jump = 8.5
 walkSpeed = 5.0
@@ -28,6 +28,7 @@ coords = NodePath("UserInterface/MarginContainer/VBoxContainer/CoordinateLabel")
 fps = NodePath("UserInterface/MarginContainer/VBoxContainer/FPSLabel")
 gamemode = NodePath("UserInterface/MarginContainer/VBoxContainer/GameModeLabel")
 targeted = NodePath("UserInterface/MarginContainer/VBoxContainer/TargetedLabel")
+facing = NodePath("UserInterface/MarginContainer/VBoxContainer/FacingLabel")
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -85,11 +86,15 @@ theme_override_fonts/font = ExtResource("2_8ggpf")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_8ggpf")
 
-[node name="GameModeLabel" type="Label" parent="UserInterface/MarginContainer/VBoxContainer"]
+[node name="TargetedLabel" type="Label" parent="UserInterface/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_8ggpf")
 
-[node name="TargetedLabel" type="Label" parent="UserInterface/MarginContainer/VBoxContainer"]
+[node name="FacingLabel" type="Label" parent="UserInterface/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8ggpf")
+
+[node name="GameModeLabel" type="Label" parent="UserInterface/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_8ggpf")
 
