@@ -15,7 +15,7 @@ albedo_color = Color(1, 1, 1, 0.4)
 material = SubResource("StandardMaterial3D_8j2cv")
 size = Vector3(1.01, 1.01, 1.01)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "cam", "RayCast", "highlighter", "coords", "fps", "gamemode", "targeted", "facing")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "cam", "RayCast", "highlighter", "coords", "fps", "gamemode", "targeted", "facing", "chunk")]
 script = ExtResource("1_g3lm8")
 jump = 8.5
 walkSpeed = 5.0
@@ -29,6 +29,7 @@ fps = NodePath("UserInterface/MarginContainer/VBoxContainer/FPSLabel")
 gamemode = NodePath("UserInterface/MarginContainer/VBoxContainer/GameModeLabel")
 targeted = NodePath("UserInterface/MarginContainer/VBoxContainer/TargetedLabel")
 facing = NodePath("UserInterface/MarginContainer/VBoxContainer/FacingLabel")
+chunk = NodePath("UserInterface/MarginContainer/VBoxContainer/ChunkLabel")
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -83,6 +84,10 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_8ggpf")
 
 [node name="CoordinateLabel" type="Label" parent="UserInterface/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8ggpf")
+
+[node name="ChunkLabel" type="Label" parent="UserInterface/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_8ggpf")
 

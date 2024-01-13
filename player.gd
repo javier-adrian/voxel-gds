@@ -14,6 +14,7 @@ extends CharacterBody3D
 @export var gamemode: Label
 @export var targeted: Label
 @export var facing: Label
+@export var chunk: Label
 @export var survival: bool
 
 var lookAngles = Vector2.ZERO
@@ -127,3 +128,5 @@ func _process(delta):
 	)
 	fps.text = str(Engine.get_frames_per_second()) + " fps"
 	gamemode.text = "survival" if survival else "creative"
+
+	chunk.text = "Chunk: " + str(floori(global_position.x / 32)) + " / " + str(floori(global_position.z / 32))
