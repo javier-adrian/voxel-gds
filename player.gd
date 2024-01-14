@@ -23,7 +23,7 @@ var targetedBlock: String
 var looking_at: Vector2
 var directions := [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
 var distances : Array[float] = [0, 0, 0, 0]
-var directions_string := ["east", "west", "south", "north"]
+var directions_string := ["east [+X]", "west [-X]", "south [+N]", "north [-N]"]
 
 var sprintSpeed: float
 var playerSpeed: float
