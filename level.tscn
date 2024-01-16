@@ -55,10 +55,6 @@ environment = SubResource("Environment_rhxq6")
 transform = Transform3D(-0.548498, 0, 0.836152, 0, 1, 0, -0.836152, 0, -0.548498, 32, 64, -32)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("2_yslca")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35, 0)
-survival = true
-
 [node name="Chunk" parent="." instance=ExtResource("3_xwiq5")]
 
 [node name="Chunk2" parent="." instance=ExtResource("3_xwiq5")]
@@ -69,3 +65,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, -32)
 
 [node name="Chunk4" parent="." instance=ExtResource("3_xwiq5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+
+[node name="Player" parent="." instance=ExtResource("2_yslca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35, 0)
+survival = true

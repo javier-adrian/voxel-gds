@@ -38,10 +38,6 @@ var chunkPosition: Vector2i
 func _ready():
 	setChunkPosition(Vector2i(floori(global_position.x / dimensions.x), floori(global_position.z / dimensions.z)))
 
-	generate()
-	update()
-
-
 ## Generate the [member mesh] and [member collider]
 func update():
 	surfaceTool.begin(Mesh.PRIMITIVE_TRIANGLES)
