@@ -67,5 +67,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, -32)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
 
 [node name="Player" parent="." instance=ExtResource("2_yslca")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 32, 48)
 survival = true
