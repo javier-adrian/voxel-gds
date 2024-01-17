@@ -17,7 +17,7 @@ A simple voxel engine written in GDScript. Heavily inspired by [xen-42's iterati
 - Noise-based terrain generation
 - Additional block types
 - Trees
-- Enhanced debug info
+- Enhanced debug info (WIP)
 - Survival mode player
 - Visible player character
 - Multiplayer
