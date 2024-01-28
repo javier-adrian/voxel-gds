@@ -84,6 +84,7 @@ func generate():
 				blocks[Vector3i(x, y, z)] = block
 
 
+## Creates the mesh for the visible [i]faces[/i] on a [i]Block[/i]'s [blockPosition].
 func createBlockMesh(blockPosition: Vector3i):
 	var block = blocks[Vector3i(blockPosition)]
 
@@ -104,6 +105,7 @@ func createBlockMesh(blockPosition: Vector3i):
 		createFaceMesh(back, blockPosition, block.texture)
 
 
+## Creates the mesh for a [i]Block[/i]'s face and applies a [texture] to it.
 func createFaceMesh(face: Array[int], blockPosition: Vector3i, texture: Texture2D):
 	var texturePosition = blockManager.getTextureAtlasPosition(texture)
 	var textureAtlasSize = blockManager.textureAtlasSize
@@ -135,6 +137,7 @@ func createFaceMesh(face: Array[int], blockPosition: Vector3i, texture: Texture2
 	surfaceTool.add_triangle_fan(bottomRightTriangle, uvBottomRightTriangle, normals)
 
 
+## Checks if the [i]Block[/i]] at [blockPosition] is transparent or not.
 func checkTransparent(blockPosition: Vector3i):
 	if blockPosition.x < 0 || blockPosition.x >= dimensions.x:
 		return true
@@ -145,10 +148,14 @@ func checkTransparent(blockPosition: Vector3i):
 
 	return blocks[blockPosition] == blockManager.air
 
+
+## Sets the [i]Block[/i] at [blockPosition] to a certain type of [i]Block[/i].
 func setBlock(blockPosition: Vector3i, block: Block):
 	blocks[blockPosition] = block
 	update()
 
+
+## Returns a string value about the type of [i]Block[/i] at [blockPosition].
 func getBlock(blockPosition: Vector3i) -> String:
 	match blocks[blockPosition]:
 		blockManager.dirt:
@@ -159,6 +166,7 @@ func getBlock(blockPosition: Vector3i) -> String:
 			return "grass"
 	return "none"
 
+## Updates the [Chunk]'s position to [i]position[/i].
 func setChunkPosition(position: Vector2i):
 	chunkManager.updateChunkPosition(self, position, chunkPosition)
 
