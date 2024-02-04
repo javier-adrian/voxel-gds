@@ -12,5 +12,6 @@ class_name Block
 # func _ready():
 #     textures = [texture == null, topTexture == null, bottomTexture == null]
 
+## Returns an [i]array[/i] of the [Texture2D]s for the faces of a [i]Block[/i].
 func textures() -> Array[Texture2D]:
     return [texture, topTexture, bottomTexture]
