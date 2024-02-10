@@ -72,6 +72,7 @@ func _ready():
 	)
 
 
+## Returns the [i]Vector2i[/i] coordinate of a [texture] on the [i]stitched atlas[/i].
 func getTextureAtlasPosition(texture: Texture2D) -> Vector2i:
 	if !texture:
 		return Vector2i.ZERO
