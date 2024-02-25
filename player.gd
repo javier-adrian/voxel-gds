@@ -1,9 +1,9 @@
 
 extends CharacterBody3D
 
-@export var jump: float  # 300
-@export var walkSpeed: float  # 5
-@export var sensitivity: float  # 300
+@export var jump: float
+@export var walkSpeed: float
+@export var sensitivity: float
 
 @export var head: Node3D
 @export var cam: Camera3D
