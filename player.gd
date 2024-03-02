@@ -9,13 +9,13 @@ extends CharacterBody3D
 @export var cam: Camera3D
 @export var RayCast: RayCast3D
 @export var highlighter: MeshInstance3D
-@export var coords: Label
-@export var fps: Label
-@export var gamemode: Label
-@export var targeted: Label
-@export var facing: Label
-@export var chunk: Label
-@export var survival: bool
+@export var coords_label: Label
+@export var fps_label: Label
+@export var gamemode_label: Label
+@export var targeted_label: Label
+@export var facing_label: Label
+@export var chunk_label: Label
+@export var is_survival: bool
 
 var lookAngles = Vector2.ZERO
 
@@ -40,9 +40,9 @@ func _ready():
 
 
 func _physics_process(delta):
-	if !is_on_floor() && survival:
+	if !is_on_floor() && is_survival:
 		velocity.y -= gravity * delta
-	if Input.is_action_just_pressed("Up") && is_on_floor() && survival:
+	if Input.is_action_just_pressed("Up") && is_on_floor() && is_survival:
 		velocity.y = jump
 
 	var horizontal = Input.get_vector("Left", "Right", "Backward", "Forward").normalized()
@@ -52,7 +52,7 @@ func _physics_process(delta):
 	direction += horizontal.x * head.global_basis.x
 	direction += horizontal.y * -head.global_basis.z
 
-	if !survival:
+	if !is_survival:
 		var vertical = Input.get_axis("Up", "Down") * -1
 		velocity.y = vertical * gravity
 
@@ -72,11 +72,11 @@ func _physics_process(delta):
 
 func _input(event):
 	if Input.is_physical_key_pressed(KEY_F4):
-		survival = false if survival else true
+		is_survival = false if is_survival else true
 	if Input.is_physical_key_pressed(KEY_F1):
-		coords.visible = false if coords.visible else true
-		fps.visible = false if fps.visible else true
-		gamemode.visible = false if gamemode.visible else true
+		coords_label.visible = false if coords_label.visible else true
+		fps_label.visible = false if fps_label.visible else true
+		gamemode_label.visible = false if gamemode_label.visible else true
 	if event is InputEventMouseMotion:
 		var mouseMotion = event as InputEventMouseMotion
 		lookAngles.x = mouseMotion.relative.y * sensitivity
@@ -92,7 +92,7 @@ func _input(event):
 	for i in len(directions):
 		distances[i] = directions[i].distance_to(looking_at)
 	
-	facing.text = "Facing: %s" % str(directions_string[distances.find(distances.min())])
+	facing_label.text = "Facing: %s" % str(directions_string[distances.find(distances.min())])
 
 func _process(delta):
 	highlighter.visible = RayCast.is_colliding()
@@ -106,7 +106,7 @@ func _process(delta):
 		var intBlockPosition = Vector3i(floori(blockPosition.x), floori(blockPosition.y), floori(blockPosition.z))
 
 		targetedBlock = chunk.getBlock(Vector3i(intBlockPosition - Vector3i(chunk.global_position)))
-		targeted.text = "Targeted block: " + targetedBlock + " (" +str(intBlockPosition.x) + " / " + str(intBlockPosition.y) + " / " + str(intBlockPosition.z) + ")"
+		targeted_label.text = "Targeted block: " + targetedBlock + " (" +str(intBlockPosition.x) + " / " + str(intBlockPosition.y) + " / " + str(intBlockPosition.z) + ")"
  
 		highlighter.global_position = Vector3(intBlockPosition) + Vector3(0.5, 0.5, 0.5)
 
@@ -116,9 +116,9 @@ func _process(delta):
 			chunkManager.setBlock(Vector3i(intBlockPosition + Vector3i(RayCast.get_collision_normal())), blockManager.stone)
 	else:
 		highlighter.visible = false
-		targeted.text = "Targeted block: none"
+		targeted_label.text = "Targeted block: none"
 
-	coords.text = (
+	coords_label.text = (
 		"XYZ: "
 		+ ("%.2f" % global_position.x)
 		+ " / "
@@ -126,7 +126,7 @@ func _process(delta):
 		+ " / "
 		+ ("%.2f" % global_position.z)
 	)
-	fps.text = str(Engine.get_frames_per_second()) + " fps"
-	gamemode.text = "survival" if survival else "creative"
+	fps_label.text = str(Engine.get_frames_per_second()) + " fps_label"
+	gamemode_label.text = "is_survival" if is_survival else "creative"
 
-	chunk.text = "Chunk: " + str(floori(global_position.x / 32)) + " / " + str(floori(global_position.z / 32))
+	chunk_label.text = "Chunk: " + str(floori(global_position.x / 32)) + " / " + str(floori(global_position.z / 32))
