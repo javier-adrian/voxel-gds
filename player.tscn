@@ -15,7 +15,7 @@ albedo_color = Color(1, 1, 1, 0.4)
 material = SubResource("StandardMaterial3D_8j2cv")
 size = Vector3(1.01, 1.01, 1.01)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "cam", "RayCast", "highlighter", "coords", "fps", "gamemode", "targeted", "facing", "chunk")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "cam", "RayCast", "highlighter", "coords_label", "fps_label", "gamemode_label", "targeted_label", "facing_label", "chunk_label")]
 script = ExtResource("1_g3lm8")
 jump = 8.5
 walkSpeed = 5.0
@@ -24,12 +24,12 @@ head = NodePath("head")
 cam = NodePath("head/Camera3D")
 RayCast = NodePath("head/Camera3D/RayCast3D")
 highlighter = NodePath("highlighter")
-coords = NodePath("UserInterface/MarginContainer/VBoxContainer/CoordinateLabel")
-fps = NodePath("UserInterface/MarginContainer/VBoxContainer/FPSLabel")
-gamemode = NodePath("UserInterface/MarginContainer/VBoxContainer/GameModeLabel")
-targeted = NodePath("UserInterface/MarginContainer/VBoxContainer/TargetedLabel")
-facing = NodePath("UserInterface/MarginContainer/VBoxContainer/FacingLabel")
-chunk = NodePath("UserInterface/MarginContainer/VBoxContainer/ChunkLabel")
+coords_label = NodePath("UserInterface/MarginContainer/VBoxContainer/CoordinateLabel")
+fps_label = NodePath("UserInterface/MarginContainer/VBoxContainer/FPSLabel")
+gamemode_label = NodePath("UserInterface/MarginContainer/VBoxContainer/GameModeLabel")
+targeted_label = NodePath("UserInterface/MarginContainer/VBoxContainer/TargetedLabel")
+facing_label = NodePath("UserInterface/MarginContainer/VBoxContainer/FacingLabel")
+chunk_label = NodePath("UserInterface/MarginContainer/VBoxContainer/ChunkLabel")
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
